@@ -22,7 +22,7 @@ Project to help students with lack of internships to send requests to companies
 * Rename the **.env.example** inside the project folder to **.env**
 * Change the details of your database in the **.env** file
 * Run **composer install** in the root of your project to install all dependencies the application needs to run properly
-* Run **php artisan migrate --seed** or **php artisan migrate an php artisan db:seed** to migrate and seed the tables the application needs to run
+* Run **php artisan migrate --seed** or **php artisan migrate and php artisan db:seed** to migrate and seed the tables the application needs to run
 * Run **php artisan serve** to start a local development server or put the project folder under your xampp httdocs and use your browser to access the website.
 
 
