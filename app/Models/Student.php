@@ -13,6 +13,6 @@ class Student extends Model {
 
   public function university()
   {
-    return $this->morphOne('App\Models\University');
+    return $this->belongsTo('App\Models\University');
   }
 }

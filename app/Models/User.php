@@ -22,7 +22,7 @@
      * @var string
      */
     protected $table = 'users';
-    protected $fillable = ['first_name','last_name', 'email', 'password','user_type_id', 'avatar','slug', 'token','state_id','userable_id','userable_type','cellnumber'];
+    protected $fillable = ['first_name','last_name','fullname' ,'email', 'password','user_type_id', 'avatar','slug', 'token','state_id','userable_id','userable_type','cellnumber'];
     protected $hidden = ['password', 'remember_token'];
 
     protected $sluggable = [
@@ -116,8 +116,8 @@
          $this->permissions()->attach($assigned_permissions);
      }
 
-     public function getFullnameAttribute(){
-       return $this->first_name . " " . $this->last_name;
+     public function setFullnameAttribute(){
+        $this->attributes["fullname"] = $this->attributes["first_name"] . " " . $this->attributes["last_name"];
      }
      public function getStudentNumberAttribute(){
       if($this->userable_type ==="App\Models\Student"){
@@ -172,5 +172,9 @@
     public function scopeStudent($query)
     {
       $query->where("userable_type", "App\Models\Student");
+    }
+
+    public function getStudentAttribute(){
+       return \App\Models\Student::findOrFail($this->userable_id);
     }
   }

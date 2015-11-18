@@ -9,6 +9,7 @@ use App\Models\State;
 use App\Models\University;
 use App\Models\SosModel;
 use App\Models\UserType;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class SosRequestController extends Controller {
@@ -42,7 +43,9 @@ class SosRequestController extends Controller {
 	 */
 	public function create()
 	{
-		return view("pages.sos_requests.create"); 
+		$users_list = Student::lists("student_number","id");
+    $companies_list = Company::lists("name","id");
+		return view("pages.sos_requests.create",compact("users_list","companies_list")); 
 	}
 
 	/**
@@ -50,9 +53,10 @@ class SosRequestController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		$sos = SosModel::create(['name' => date("ymdh"),'user_id'=>$request->input('user_id'),'company_id'=>$request->input('company_id')]);
+		return redirect("/sos-requests");
 	}
 
 	/**

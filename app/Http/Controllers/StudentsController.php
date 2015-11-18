@@ -51,6 +51,7 @@ class StudentsController extends Controller {
 		$user = [
 		  'first_name' => $request->input('first_name'),
 		  'last_name'  => $request->input('last_name'),
+		  'fullname'  =>  '',
 		  'password' => '0000',
 		  'email' => $request->input('email'),
 		  'address' => $request->input('address'),

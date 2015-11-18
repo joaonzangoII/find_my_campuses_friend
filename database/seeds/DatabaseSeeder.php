@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     Model::unguard();
 
     $this->call(UserTypeTableSeeder::class);
+    $this->call(CompanyTableSeeder::class);
     $this->call(UniversityTableSeeder::class);
     $this->call(PermissionTableSeeder::class);
     $this->call(StateTableSeeder::class);
@@ -48,6 +49,7 @@ class UserTableSeeder extends Seeder
     $user =[
       'first_name' => 'Jose Antonio',
       'last_name'  => 'Sinadinse',
+      'fullname'  => '',
       'password' => \Hash::make('password'),
       'email' => 'toniobarros@hotmail.com',
       'address' => 'Pretoria',
@@ -72,6 +74,7 @@ class UserTableSeeder extends Seeder
       $user = [
         'first_name' => 'Name' . $i,
         'last_name'  => 'Surname' . $i,
+        'fullname'  => '',
         'password' => \Hash::make('aleluia'),
         'email' => 'josebarros'. $i . '@hotmail.com',
         'address' => 'Pretoria',
@@ -139,6 +142,40 @@ class UserTypeTableSeeder extends Seeder
     $user_type = UserType::create([
       'name' => 'Student',
     ]);
+  }
+}
+use App\Models\Company;
+class CompanyTableSeeder extends Seeder
+{
+  /**
+   * Run the database seeds.
+   *
+   * @return void
+   */
+  public function run()
+  {
+    Company::truncate();
+    $companies = [
+      "Vodacom",
+      "MTN",
+      "BMW",
+      "SITA",
+      "City of Tshwane",
+      "Telkom",
+      "Accenture",
+      "Innovation Hub",
+      "Mlab",
+    ];
+    foreach ($companies as $company) { 
+      $r = Company::create([
+        "name" => $company,
+        "contact" => '0400004442',
+        "email" => 'ino@one.com',
+        "address" => 'ss',
+        "website" => 'www.one.com',
+        "contact_person" => ''
+      ]);
+    }
   }
 }
 use App\Models\Permission;

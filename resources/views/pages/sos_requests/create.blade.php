@@ -9,7 +9,7 @@
   </li>
   <li>
     <i class="icon-group"></i>
-    <a href="/universities">Universities</a>
+    <a href="/universities">SOS requests</a>
     <i class="icon-angle-right"></i>
   </li>
   <li><a href="#">Create</a></li>
@@ -17,7 +17,7 @@
 <div class="row-fluid">
 	<div class="box span12">
 		<div class="box-header" data-original-title>
-			<h2><i class="halflings-icon white edit"></i><span class="break"></span>Register new University</h2>
+			<h2><i class="halflings-icon white edit"></i><span class="break"></span>Create new SOS Request</h2>
 			<div class="box-icon">
 				<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
 				<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
@@ -41,41 +41,24 @@ chancellor
 vice_chancellor
 slug --}}
 		<div class="box-content">
-      {!! Form::open(['method' => 'POST',"class"=>"form-horizontal","url"=> "/universities"])!!}
+      {!! Form::open(['method' => 'POST',"class"=>"form-horizontal","url"=> "/sos-requests"])!!}
     		<fieldset>
-    		  <div class="control-group">
-            {!! Form::label('name', 'Name:',["class"=>"control-label"]) !!}
-    				<div class="controls">
-              {!! Form::text('name', null, ['class' => 'form-control input-xlarge focused']) !!}
-    				</div>
-    		  </div>
-    		  <div class="control-group">
-            {!! Form::label('chancellor', 'Chancellor:',["class"=>"control-label"]) !!}
-            <div class="controls">
-              {!! Form::text('chancellor', null, ['class' => 'form-control input-xlarge focused']) !!}
-            </div>
-          </div>  
+
           <div class="control-group">
-            {!! Form::label('vice_chancellor', 'Vice Chancellor:',["class"=>"control-label"]) !!}
-            <div class="controls">
-              {!! Form::text('vice_chancellor', null, ['class' => 'form-control input-xlarge focused']) !!}
-            </div>
-          </div>    
+           {!! Form::label('user_id', 'Student:',["class"=>"control-label"]) !!}
+           <div class="controls">
+             {!! Form::select('user_id',$users_list,null,['class' => 'form-control input-xlarge','data-rel'=>"chosen",'data-placeholder'=>"Select State"]) !!}
+           </div>
+          </div>
           <div class="control-group">
-            {!! Form::label('slogan', 'Slogan:',["class"=>"control-label"]) !!}
+            {!! Form::label('company_id', 'Company:',["class"=>"control-label"]) !!}
             <div class="controls">
-              {!! Form::text('slogan', null, ['class' => 'form-control input-xlarge focused']) !!}
+              {!! Form::select('company_id',$companies_list,null,['class' => 'form-control input-xlarge','data-rel'=>"chosen",'data-placeholder'=>"Select Company"]) !!}
             </div>
-          </div>  
-          <div class="control-group">
-            {!! Form::label('description', 'Description:',["class"=>"control-label"]) !!}
-    				<div class="controls">
-              {!! Form::textarea('description', null, ['class' => 'form-control input-xlarge focused']) !!}
-    				</div>
-    		  </div>
+          </div>
           <div class="form-actions">
-        	<button type="submit" class="btn btn-primary">Confirm</button>
-        	<button type="reset" class="btn">Reset</button>
+          	<button type="submit" class="btn btn-primary">Confirm</button>
+          	<button type="reset" class="btn">Reset</button>
           </div>
         </fieldset>
     {!!Form::close()!!}

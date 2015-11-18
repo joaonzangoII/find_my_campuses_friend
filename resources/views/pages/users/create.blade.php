@@ -81,8 +81,8 @@
             </div>
           </div>
           <div class="form-actions">
-        	<button type="submit" class="btn btn-primary">Confirm</button>
-        	<button type="reset" class="btn">Reset</button>
+          	<button type="submit" class="btn btn-primary">Confirm</button>
+          	<button type="reset" class="btn">Reset</button>
           </div>
         </fieldset>
     {!!Form::close()!!}

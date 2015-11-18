@@ -33,6 +33,12 @@
               <div class="controls">
                 <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="{{ $user->fullname }}" disabled="">
               </div>
+            </div>        
+            <div class="control-group">
+              <label class="control-label" for="disabledInput">{{ $user->userable_type ==="App\Models\Student" ? "Student Number: " : "Staff Number: " }}</label>
+              <div class="controls">
+                <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="{{ $user->student_number }}" disabled="">
+              </div>
             </div>
             <div class="control-group">
               <label class="control-label" for="disabledInput">Cellnumber: </label>

@@ -27,6 +27,7 @@
                 <th>Name</th>
                 <th>University</th>
                 <th>Students</th>
+                <th>Company</th>
                 <th>Created</th>
                 <th>Updated</th>
                 <th>Actions</th>
@@ -35,12 +36,14 @@
             <tbody>
               @foreach($sos as $key => $item)
                 <tr class="{{ $key%2==0 ? 'even' : 'odd'}}">
-        					<td class=" sorting_1">{{$item->name}}</td>
-                  <td class="center ">{{ $item->university }}</td>
-                  <td class="center ">{{ $item->students }}</td>
-                  <td class="center ">{{ count($item->created_at->format("y-m-d")) }}</td>
-        					<td class="center ">{{ count($item->updated_ad>format("y-m-d")) }}</td>
-                  <td class="center ">
+        					<td class="sorting_1">{{$item->name}}</td>
+                  <td class="sorting_1 center">{{ $item->user->student->university->name }}</td>
+                  <td class="sorting_1 center">{{ $item->user->student->student_number }}</td>
+                  <td class="sorting_1 center">{{ $item->company->name }}</td>
+                  <td class="sorting_1 center">{{ $item->created_at->diffforhumans() }}</td>
+                  {{-- <td class="sorting_1 center">{{ $item->created_at->format("Y-m-d H:m:s") }}</td> --}}
+        					<td class="sorting_1 center">{{ $item->updated_at->diffforhumans() }}</td>
+                  <td class="sorting_1 center">
                     <a class="btn btn-success" href="{{$item->show_link}}">
                       <i class="halflings-icon white zoom-in"></i>
                     </a>
