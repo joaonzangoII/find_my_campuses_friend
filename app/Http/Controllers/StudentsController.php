@@ -78,7 +78,6 @@ class StudentsController extends Controller {
     return view("pages.students.show", compact("user"));
    }
 
-
 	/**
 	 * Show the form for editing the specified resource.
 	 *

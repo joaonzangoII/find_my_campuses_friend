@@ -58,10 +58,12 @@
                 <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="{{ $user->user_type_descr }}" disabled="">
               </div>
             </div>
+
+            <a class="btn" type="button" href="{{ $user->show_link }}/profile.pdf">PDF</a>
+
           </fieldset>
         </form>
       </div>
-
     </div>
   </div>
   <div class="row-fluid">

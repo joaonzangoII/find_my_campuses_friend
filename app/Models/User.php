@@ -119,6 +119,15 @@
      public function getFullnameAttribute(){
        return $this->first_name . " " . $this->last_name;
      }
+     public function getStudentNumberAttribute(){
+      if($this->userable_type ==="App\Models\Student"){
+        $student = \App\Models\Student::findOrFail($this->userable_id);
+        return $student->student_number;
+      }
+      
+      $staff = \App\Models\Staff::findOrFail($this->userable_id);
+      return $staff->staff_number;
+     }
 
     public function getPatchLinkAttribute(){
       return url('/users/'. $this->slug);

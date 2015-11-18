@@ -24,7 +24,8 @@
           <table class="table table-striped table-bordered bootstrap-datatable datatable">
             <thead>
               <tr>
-                <th>Username</th>
+                <th>Name</th>
+                <th>Std/Staff Number</th>
                 <th>Date registered</th>
                 {{-- <th>Role</th> --}}
                 <th>Type</th>
@@ -35,11 +36,12 @@
             <tbody>
               @foreach($users as $key => $user)
                 <tr class="{{ $key%2==0 ? 'even' : 'odd'}}">
-        					<td class=" sorting_1">{{$user->fullname}}</td>
-        					<td class="center ">{{$user->created_at->format("Y-m-d")}}</td>
-        					<td class="center ">{{ $user->user_type_descr }}</td>
+        					<td class="sorting_1">{{$user->fullname}}</td>
+                  <td class="sorting_1">{{$user->studentnumber}}</td>
+        					<td class="sorting_1 center">{{$user->created_at->format("Y-m-d")}}</td>
+        					<td class="sorting_1 center">{{ $user->user_type_descr }}</td>
                   
-        					<td class="center ">
+        					<td class="sorting_1 center">
         						<span class="label label-success">{{$user->state->name}}</span>
         					</td>
         					<td class="center ">

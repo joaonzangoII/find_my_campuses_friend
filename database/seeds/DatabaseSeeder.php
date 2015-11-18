@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder
 use App\Models\User;
 use App\Models\Staff;
 use App\Models\Student;
+use App\Models\StudentNumber;
+use App\Models\StaffNumber;
 class UserTableSeeder extends Seeder
 {
   /**
@@ -40,6 +42,8 @@ class UserTableSeeder extends Seeder
     User::truncate();
     Staff::truncate();
     Student::truncate();
+    StudentNumber::truncate();
+    StaffNumber::truncate();
 
     $user =[
       'first_name' => 'Jose Antonio',
@@ -51,7 +55,16 @@ class UserTableSeeder extends Seeder
       'user_type_id' => 1,
       'state_id' => 1,
     ];
-    $staff = Staff::create(['staff_number'=>'00000']);
+    
+    if(StaffNumber::all()->count()==0){
+      $stfnum = StaffNumber::create(["number" => 2000, "date"=> date("Y-m-d")]);
+    }
+    else{
+      $lateststfnum = StaffNumber::all()->last();
+      $stfnum = StaffNumber::create(["number" => $lateststfnum->number  + 1 , "date"=> date("Y-m-d")]);
+    }
+
+    $staff = Staff::create(['staff_number'=>$stfnum->number]);
     $user = $staff->user()->create($user);
     $user->addPermission('admin');
 
@@ -66,7 +79,15 @@ class UserTableSeeder extends Seeder
         'user_type_id' => 3,
         'state_id' => 1,
       ];
-      $student = Student::create(['student_number'=>'00000',"university_id"=> 1,"faculty_id"=>'',"department_id"=>'',"course_id"=>'']);
+      if(StudentNumber::all()->count()==0){
+        $stdnum = StudentNumber::create(["number" => 200000000, "date"=> date("Y-m-d")]);
+      }
+      else{
+        $lateststdnum = StudentNumber::all()->last();
+        $stdnum = StudentNumber::create(["number" => $lateststdnum->number  + 1 , "date"=> date("Y-m-d")]);
+      }
+
+      $student = Student::create(['student_number'=>$stdnum->number,"university_id"=> 1,"faculty_id"=>'',"department_id"=>'',"course_id"=>'']);
       $user = $student->user()->create($user);
       $user->addPermission('student');
     }
