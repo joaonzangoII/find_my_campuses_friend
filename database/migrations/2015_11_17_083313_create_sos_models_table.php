@@ -17,7 +17,6 @@ class CreateSosModelsTable extends Migration {
 			$table->increments('id');
 			$table->string('name');
 			$table->string('user_id');
-			$table->string('company_id');
 			$table->string('slug');
 			$table->timestamps();
 		});

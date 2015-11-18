@@ -14,4 +14,8 @@ class Company extends Model implements SluggableInterface{
     'save_to'    => 'slug',
   ];
 
+  public function sos_requests()
+  {
+    return $this->belongsToMany('App\Models\SosModel', 'companies_sos_models');
+  }
 }

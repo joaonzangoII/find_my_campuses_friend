@@ -11,4 +11,9 @@ class SosModel extends Model {
   public function getCompanyAttribute(){
      return \App\Models\Company::findOrFail($this->company_id);
   }
+
+  public function companies()
+  {
+    return $this->belongsToMany('App\Models\Company', 'companies_sos_models');
+  }
 }

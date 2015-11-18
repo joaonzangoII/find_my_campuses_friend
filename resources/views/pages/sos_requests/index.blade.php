@@ -39,7 +39,7 @@
         					<td class="sorting_1">{{$item->name}}</td>
                   <td class="sorting_1 center">{{ $item->user->student->university->name }}</td>
                   <td class="sorting_1 center">{{ $item->user->student->student_number }}</td>
-                  <td class="sorting_1 center">{{ $item->company->name }}</td>
+                  <td class="sorting_1 center">{{ count($item->companies) }}</td>
                   <td class="sorting_1 center">{{ $item->created_at->diffforhumans() }}</td>
                   {{-- <td class="sorting_1 center">{{ $item->created_at->format("Y-m-d H:m:s") }}</td> --}}
         					<td class="sorting_1 center">{{ $item->updated_at->diffforhumans() }}</td>

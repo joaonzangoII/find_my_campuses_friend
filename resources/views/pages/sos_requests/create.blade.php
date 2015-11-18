@@ -34,12 +34,6 @@
         </ul>
       </div>
     @endif
-{{--     name
-description
-slogan
-chancellor
-vice_chancellor
-slug --}}
 		<div class="box-content">
       {!! Form::open(['method' => 'POST',"class"=>"form-horizontal","url"=> "/sos-requests"])!!}
     		<fieldset>
@@ -53,7 +47,7 @@ slug --}}
           <div class="control-group">
             {!! Form::label('company_id', 'Company:',["class"=>"control-label"]) !!}
             <div class="controls">
-              {!! Form::select('company_id',$companies_list,null,['class' => 'form-control input-xlarge','data-rel'=>"chosen",'data-placeholder'=>"Select Company"]) !!}
+              {!! Form::select('company_id[]',$companies_list,null,['multiple' => 'multiple', 'class' => 'form-control input-xlarge','data-rel'=>"chosen",'data-placeholder'=>"Select Company"]) !!}
             </div>
           </div>
           <div class="form-actions">

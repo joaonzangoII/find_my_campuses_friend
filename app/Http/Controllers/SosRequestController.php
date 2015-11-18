@@ -11,6 +11,8 @@ use App\Models\SosModel;
 use App\Models\UserType;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use App\Http\Requests\SosModelRequest;
+
 
 class SosRequestController extends Controller {
   
@@ -53,9 +55,17 @@ class SosRequestController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request)
+	public function store(SosModelRequest $request)
 	{
-		$sos = SosModel::create(['name' => date("ymdh"),'user_id'=>$request->input('user_id'),'company_id'=>$request->input('company_id')]);
+		$data = $request->all();
+		$sos = SosModel::create(['name' => date("ymdh"),'user_id'=>$request->input('user_id')]);
+		$sos->companies()->attach($data["company_id"]);
+		foreach ($data["company_id"] as $key => $company) {
+			// \Mail::send('emails.letter', $data, function($message) use ($data)
+			// {
+			//   $message->to("contactos@flashcabinda.com", 'FlashCabinda')->subject('Contactos');
+			// });
+		}
 		return redirect("/sos-requests");
 	}
 

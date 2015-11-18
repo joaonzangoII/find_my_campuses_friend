@@ -89,7 +89,6 @@
          $assigned_permissions = array();
          $permissions = Permission::lists('permission');
          // $permissions = array_fetch(Role::all()->toArray(), 'name');
-
          switch ($title) {
              case 'admin':
                 $assigned_permissions[] = $this->getIdInArray($permissions, 'view_lecturer');
