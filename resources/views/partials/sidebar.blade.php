@@ -2,41 +2,51 @@
   <div class="nav-collapse sidebar-nav">
     <ul class="nav nav-tabs nav-stacked main-menu">
       <li><a href="/"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-      <li>
-        <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Users</span><span class="label label-important"> {{ $users_count }} </span></a>
-        <ul>
-          <li><a class="submenu" href="/users"><i class="icon-file-alt"></i><span class="hidden-tablet"> View</span></a></li>
-          <li><a class="submenu" href="/users/create"><i class="icon-file-alt"></i><span class="hidden-tablet"> Create</span></a></li>
-        </ul>
-      </li>      
-      <li>
-        <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Students</span><span class="label label-important"> {{ $students_count }} </span></a>
-        <ul>
-          <li><a class="submenu" href="/students"><i class="icon-file-alt"></i><span class="hidden-tablet"> View</span></a></li>
-          <li><a class="submenu" href="/students/create"><i class="icon-file-alt"></i><span class="hidden-tablet"> Create</span></a></li>
-        </ul>
-      </li>      
-      <li>
-        <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Universities</span><span class="label label-important"> {{ $universities_count }} </span></a>
-        <ul>
-          <li><a class="submenu" href="/universities"><i class="icon-file-alt"></i><span class="hidden-tablet"> View</span></a></li>
-          <li><a class="submenu" href="/universities/create"><i class="icon-file-alt"></i><span class="hidden-tablet"> Create</span></a></li>
-        </ul>
-      </li>
-      <li>
-        <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> SOS</span><span class="label label-important"> {{ $sos_count}} </span></a>
-        <ul>
-          <li><a class="submenu" href="/sos-requests"><i class="icon-file-alt"></i><span class="hidden-tablet"> View</span></a></li>
-          <li><a class="submenu" href="/sos-requests/create"><i class="icon-file-alt"></i><span class="hidden-tablet"> Create</span></a></li>
-        </ul>
-      </li>
-      <li>
-        <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Companies</span><span class="label label-important"> {{ $companies_count}} </span></a>
-        <ul>
-          <li><a class="submenu" href="/companies"><i class="icon-file-alt"></i><span class="hidden-tablet"> View</span></a></li>
-          <li><a class="submenu" href="/companies/create"><i class="icon-file-alt"></i><span class="hidden-tablet"> Create</span></a></li>
-        </ul>
-      </li>
+      @if(Auth::user()->hasPermission("view_user")&&Auth::user()->hasPermission("create_user"))
+        <li>
+          <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Users</span><span class="label label-important"> {{ $users_count }} </span></a>
+          <ul>
+            <li><a class="submenu" href="/users"><i class="icon-file-alt"></i><span class="hidden-tablet"> View</span></a></li>
+            <li><a class="submenu" href="/users/create"><i class="icon-file-alt"></i><span class="hidden-tablet"> Create</span></a></li>
+          </ul>
+        </li>      
+      @endif
+      @if(Auth::user()->hasPermission("view_student")&&Auth::user()->hasPermission("create_student"))
+        <li>
+          <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Students</span><span class="label label-important"> {{ $students_count }} </span></a>
+          <ul>
+            <li><a class="submenu" href="/students"><i class="icon-file-alt"></i><span class="hidden-tablet"> View</span></a></li>
+            <li><a class="submenu" href="/students/create"><i class="icon-file-alt"></i><span class="hidden-tablet"> Create</span></a></li>
+          </ul>
+        </li>   
+      @endif   
+      @if(Auth::user()->hasPermission("view_university")&&Auth::user()->hasPermission("create_university"))
+        <li>
+          <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Universities</span><span class="label label-important"> {{ $universities_count }} </span></a>
+          <ul>
+            <li><a class="submenu" href="/universities"><i class="icon-file-alt"></i><span class="hidden-tablet"> View</span></a></li>
+            <li><a class="submenu" href="/universities/create"><i class="icon-file-alt"></i><span class="hidden-tablet"> Create</span></a></li>
+          </ul>
+        </li>
+      @endif
+      @if(Auth::user()->hasPermission("view_sos_request") && Auth::user()->hasPermission("create_sos_request"))
+        <li>
+          <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> SOS</span><span class="label label-important"> {{ $sos_count}} </span></a>
+          <ul>
+            <li><a class="submenu" href="/sos-requests"><i class="icon-file-alt"></i><span class="hidden-tablet"> View</span></a></li>
+            <li><a class="submenu" href="/sos-requests/create"><i class="icon-file-alt"></i><span class="hidden-tablet"> Create</span></a></li>
+          </ul>
+        </li>
+      @endif
+      @if(Auth::user()->hasPermission("view_user")&&Auth::user()->hasPermission("create_user"))
+        <li>
+          <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Companies</span><span class="label label-important"> {{ $companies_count}} </span></a>
+          <ul>
+            <li><a class="submenu" href="/companies"><i class="icon-file-alt"></i><span class="hidden-tablet"> View</span></a></li>
+            <li><a class="submenu" href="/companies/create"><i class="icon-file-alt"></i><span class="hidden-tablet"> Create</span></a></li>
+          </ul>
+        </li>
+      @endif
       {{-- <li><a href="form.html"><i class="icon-edit"></i><span class="hidden-tablet"> Forms</span></a></li>
       <li><a href="chart.html"><i class="icon-list-alt"></i><span class="hidden-tablet"> Charts</span></a></li>
       <li><a href="typography.html"><i class="icon-font"></i><span class="hidden-tablet"> Typography</span></a></li>

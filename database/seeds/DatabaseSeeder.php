@@ -13,6 +13,13 @@ class DatabaseSeeder extends Seeder
   public function run()
   {
     Model::unguard();
+    DB::table("permissions_users")->truncate();
+    echo("Truncated:  permissions_users\n");
+    DB::table("companies_sos_models")->truncate();
+    echo("Truncated:  companies_sos_models\n");
+    echo("Done Truncating tables\n");
+      
+
 
     $this->call(UserTypeTableSeeder::class);
     $this->call(CompanyTableSeeder::class);
@@ -199,7 +206,19 @@ class PermissionTableSeeder extends Seeder
       "edit_student",
       "delete_student",
       "edit_profile",
-      "view_profile"
+      "view_profile",
+      "view_user",
+      "create_user",
+      "edit_user",
+      "delete_user",
+      "view_university",
+      "create_university",
+      "edit_university",
+      "delete_university",
+      "view_sos_request",
+      "create_sos_request",
+      "edit_sos_request",
+      "delete_sos_request"
     ];    
     $names = [
       "View Lecturer",
@@ -211,7 +230,19 @@ class PermissionTableSeeder extends Seeder
       "Edit Student",
       "Delete Student",
       "Edit Profile",
-      "View Profile"
+      "View Profile",
+      "View User",
+      "Create User",
+      "Edit User",
+      "Delete User",
+      "View University",
+      "Create University",
+      "Edit University",
+      "Delete University",
+      "View SOS Request",
+      "Create SOS Request",
+      "Edit SOS Request",
+      "Delete SOS Request"
     ];
     for ($i=0; $i < count($permissions) ; $i++) { 
       $r = Permission::create([

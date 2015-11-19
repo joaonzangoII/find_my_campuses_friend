@@ -62,7 +62,7 @@
       */
      public function hasPermission($check)
      {
-        return in_array($check, array_fetch($this->permissions->toArray(), 'name'));
+        return in_array($check, array_fetch($this->permissions->toArray(), 'permission'));
      }
 
      /**
@@ -74,7 +74,7 @@
      {
          foreach ($array as $key => $value) {
              if ($value == $term) {
-                 return $key;
+                 return $key + 1;
              }
          }
 
@@ -88,25 +88,47 @@
      {
          $assigned_permissions = array();
          $permissions = Permission::lists('permission');
-         // $permissions = array_fetch(Role::all()->toArray(), 'name');
          switch ($title) {
              case 'admin':
                 $assigned_permissions[] = $this->getIdInArray($permissions, 'view_lecturer');
                 $assigned_permissions[] = $this->getIdInArray($permissions, 'create_lecturer');
                 $assigned_permissions[] = $this->getIdInArray($permissions, 'edit_lecturer');
-                $assigned_permissions[] = $this->getIdInArray($permissions, 'delete_lecturer');      
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'delete_lecturer');    
+
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'view_user');
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'create_user');
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'edit_user');
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'delete_user');      
 
                 $assigned_permissions[] = $this->getIdInArray($permissions, 'view_student');
                 $assigned_permissions[] = $this->getIdInArray($permissions, 'create_student');
                 $assigned_permissions[] = $this->getIdInArray($permissions, 'edit_student');
-                $assigned_permissions[] = $this->getIdInArray($permissions, 'delete_student');
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'delete_student');  
+
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'view_university');
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'create_university');
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'edit_university');
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'delete_university');    
+
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'view_sos_request');
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'create_sos_request');
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'edit_sos_request');
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'delete_sos_request');
              case 'lecturer':
-                 $assigned_permissions[] = $this->getIdInArray($permissions, 'view_student');
-                 $assigned_permissions[] = $this->getIdInArray($permissions, 'view_profile');
-                 $assigned_permissions[] = $this->getIdInArray($permissions, 'edit_profile');
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'view_student');
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'view_profile');
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'edit_profile');
+
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'view_sos_request');
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'create_sos_request');
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'delete_sos_request');
              case 'student':
-                 $assigned_permissions[] = $this->getIdInArray($permissions, 'view_profile');
-                 $assigned_permissions[] = $this->getIdInArray($permissions, 'edit_profile');
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'view_profile');
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'edit_profile');
+
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'view_sos_request');
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'create_sos_request');
+                $assigned_permissions[] = $this->getIdInArray($permissions, 'delete_sos_request');
                  break;
              default:
                  throw new \Exception("The employee status entered does not exist");
@@ -172,6 +194,12 @@
     {
       $query->where("userable_type", "App\Models\Student");
     }
+
+    public function isStudent()
+    {
+      return $this->userable_type == "App\Models\Student";
+    }
+
 
     public function getStudentAttribute(){
        return \App\Models\Student::findOrFail($this->userable_id);

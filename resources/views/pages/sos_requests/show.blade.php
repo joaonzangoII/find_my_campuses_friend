@@ -9,7 +9,7 @@
     </li>
     <li>
       <i class="icon-group"></i>
-      <a href="/universities">Universities</a>
+      <a href="{{ Auth::user()->isStudent() ? '#' : '/universities'  }}">Universities</a>
       <i class="icon-angle-right"></i>
     </li>
     <li><a href="#">View</a></li>

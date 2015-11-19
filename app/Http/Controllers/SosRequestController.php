@@ -11,6 +11,7 @@ use App\Models\SosModel;
 use App\Models\UserType;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Auth;
 use App\Http\Requests\SosModelRequest;
 
 
@@ -36,6 +37,11 @@ class SosRequestController extends Controller {
 	public function index()
 	{
 		$sos= SosModel::latest()->get();
+		if(Auth::user()->isStudent())
+		{
+			$sos= SosModel::where("user_id",Auth::user()->id)->latest()->get();
+		}
+		$sos= SosModel::latest()->get();
 		return view("pages.sos_requests.index",compact("sos")); 
 	}
 
@@ -47,6 +53,10 @@ class SosRequestController extends Controller {
 	public function create()
 	{
 		$users_list = Student::lists("student_number","id");
+		if(Auth::user()->isStudent())
+		{
+			$users_list = [Auth::user()->id => Auth::user()->student->student_number];
+	  }
     $companies_list = Company::lists("name","id");
 		return view("pages.sos_requests.create",compact("users_list","companies_list")); 
 	}
