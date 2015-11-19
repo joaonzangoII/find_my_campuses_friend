@@ -9,7 +9,7 @@
   </li>
   <li>
     <i class="icon-group"></i>
-    <a href="/universities">Universities</a>
+    <a href="/companies">Company</a>
     <i class="icon-angle-right"></i>
   </li>
   <li><a href="#">Edit</a></li>
@@ -17,7 +17,7 @@
 			<div class="row-fluid">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white edit"></i><span class="break"></span>Edit {{ $university->name }} Info</h2>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>Edit {{ $company->name }} Info</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
@@ -25,7 +25,7 @@
 						</div>
 					</div>
 					<div class="box-content">
-            {!! Form::model($university, ['method' => 'PATCH',"class"=>"form-horizontal","url"=> $university->patch_link])!!}
+            {!! Form::model($company, ['method' => 'PATCH',"class"=>"form-horizontal","url"=> $company->patch_link])!!}
 							<fieldset>
 							  <div class="control-group">
                   {!! Form::label('name', 'Name:',["class"=>"control-label"]) !!}
@@ -33,28 +33,34 @@
                     {!! Form::text('name', null, ['class' => 'form-control input-xlarge focused']) !!}
   								</div>
 							  </div>
-		            <div class="control-group">
-                  {!! Form::label('chancellor', 'Chancellor:',["class"=>"control-label"]) !!}
+				        <div class="control-group">
+                  {!! Form::label('contact', 'Contact:',["class"=>"control-label"]) !!}
                   <div class="controls">
-                    {!! Form::text('chancellor', null, ['class' => 'form-control input-xlarge focused']) !!}
+                    {!! Form::text('contact', null, ['class' => 'form-control input-xlarge focused']) !!}
                   </div>
-                </div>
-					      <div class="control-group">
-                  {!! Form::label('vice_chancellor', 'Vice Chancellor:',["class"=>"control-label"]) !!}
+                </div>			  
+                <div class="control-group">
+                  {!! Form::label('email', 'Email:',["class"=>"control-label"]) !!}
                   <div class="controls">
-                    {!! Form::text('vice_chancellor', null, ['class' => 'form-control input-xlarge focused']) !!}
+                    {!! Form::text('email', null, ['class' => 'form-control input-xlarge focused']) !!}
                   </div>
                 </div>
                 <div class="control-group">
-                  {!! Form::label('slogan', 'Slogan:',["class"=>"control-label"]) !!}
+                  {!! Form::label('website', 'Website:',["class"=>"control-label"]) !!}
+                  <div class="controls">
+                    {!! Form::text('website', null, ['class' => 'form-control input-xlarge focused']) !!}
+                  </div>
+                </div>
+                <div class="control-group">
+                  {!! Form::label('contact_person', 'Contact Person:',["class"=>"control-label"]) !!}
   								<div class="controls">
-                    {!! Form::text('slogan', null, ['class' => 'form-control input-xlarge focused']) !!}
+                    {!! Form::text('contact_person', null, ['class' => 'form-control input-xlarge focused']) !!}
   								</div>
 							  </div>
                 <div class="control-group">
-                  {!! Form::label('description', 'Description:',["class"=>"control-label"]) !!}
+                  {!! Form::label('address', 'Address:',["class"=>"control-label"]) !!}
                   <div class="controls">
-                    {!! Form::textarea('description', null, ['class' => 'form-control input-xlarge focused']) !!}
+                    {!! Form::textarea('address', null, ['class' => 'form-control input-xlarge focused']) !!}
                   </div>
                 </div>
 

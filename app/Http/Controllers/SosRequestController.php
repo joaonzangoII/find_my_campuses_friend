@@ -25,7 +25,8 @@ class SosRequestController extends Controller {
 		$universities_count= University::latest()->get()->count();
 		$sos_count= SosModel::latest()->get()->count();
     $students_count= Student::latest()->get()->count();
-		\View::share(compact("users_count", "universities_count","sos_count", "states","user_types","students_count"));
+    $companies_count= Company::latest()->get()->count();
+		\View::share(compact("users_count", "universities_count","sos_count", "states","user_types","students_count","companies_count"));
 	}
 	/**
 	 * Display a listing of the resource.
@@ -58,13 +59,15 @@ class SosRequestController extends Controller {
 	public function store(SosModelRequest $request)
 	{
 		$data = $request->all();
+		$user = User::findOrFail($request->input('user_id'));
 		$sos = SosModel::create(['name' => date("ymdh"),'user_id'=>$request->input('user_id')]);
 		$sos->companies()->attach($data["company_id"]);
 		foreach ($data["company_id"] as $key => $company) {
-			// \Mail::send('emails.letter', $data, function($message) use ($data)
-			// {
-			//   $message->to("contactos@flashcabinda.com", 'FlashCabinda')->subject('Contactos');
-			// });
+			$company = Company::findOrFail($company);
+			\Mail::send('emails.letter',compact('user','company'), function($message) use ($company, $user)
+			{
+			  $message->to($company->email, env('MAIL_FROM_NAME'))->subject('Internship Letter');
+			});
 		}
 		return redirect("/sos-requests");
 	}

@@ -29,6 +29,7 @@ Route::get('users/{users}/edit', 'UsersController@edit');
 Route::get('/users/{users}/profile.pdf', 'UsersController@profile_pdf');
 Route::resource('universities', 'UniversitiesController');
 Route::resource('students', 'StudentsController');
+Route::resource('companies', 'CompaniesController');
 Route::resource('sos-requests', 'SosRequestController');
 Route::controllers([
   '/password' => 'Auth\PasswordController',

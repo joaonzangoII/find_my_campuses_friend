@@ -2,6 +2,8 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
+use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Staff;
 use App\Models\Student;
@@ -10,11 +12,11 @@ use App\Models\University;
 use App\Models\SosModel;
 use App\Models\UserType;
 use App\Models\Company;
-use Illuminate\Http\Request;
-use App\Http\Requests\UniversitiesRequest;
-class UniversitiesController extends Controller {
-  
-  public function __construct()
+use App\Http\Requests\CompaniesRequest;
+
+class CompaniesController extends Controller {
+
+	public function __construct()
 	{
 		$this->middleware('auth');
 		$user_types =  UserType::lists("name","id");
@@ -26,15 +28,9 @@ class UniversitiesController extends Controller {
     $companies_count= Company::latest()->get()->count();
 		\View::share(compact("users_count", "universities_count","sos_count", "states","user_types","students_count","companies_count"));
 	}
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		$universities= University::latest()->get();
-		return view("pages.universities.index",compact("universities")); 
+	public function index(){
+		$companies= Company::latest()->get();
+		return view("pages.companies.index",compact("companies"));
 	}
 
 	/**
@@ -44,7 +40,7 @@ class UniversitiesController extends Controller {
 	 */
 	public function create()
 	{
-		return view("pages.universities.create"); 
+		return view("pages.companies.create");
 	}
 
 	/**
@@ -52,11 +48,22 @@ class UniversitiesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(UniversitiesRequest $request)
+	public function store(CompaniesRequest $request)
 	{
+		$data = $request->only('name','contact','email','address','website','contact_person');
+		// dd($data);
+		$company = Company::create($data);
+			// $company = Company::create([
+		//   	'name' => $request->input("name"),
+		//   	'contact' => $request->input("contact"),
+		//   	'email' => $request->input("email"),
+		//   	'address' => $request->input("address"),
+		//   	'website' => $request->input("website"),
+		//   	'contact_person' => $request->input("contact_person"),
+		// ]);
 
-		$university = University::create($request->all());
-		return redirect("/universities");
+
+    return redirect("/companies");
 	}
 
 	/**
@@ -65,10 +72,10 @@ class UniversitiesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($university)
-	{
-		return view("pages.universities.show",compact("university"));
-	}
+	 public function show($company){
+	 	// dd($company);
+    return view("pages.companies.show", compact("company"));
+   }
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -76,10 +83,9 @@ class UniversitiesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($university)
-	{
-		return view("pages.universities.edit",compact("university"));
-	}
+	 public function edit($company){
+ 		 return view("pages.companies.edit", compact("company"));
+ 	}
 
 	/**
 	 * Update the specified resource in storage.
@@ -87,10 +93,10 @@ class UniversitiesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(UniversitiesRequest $request,$university)
+	public function update(CompaniesRequest $request,$company)
 	{
-		$university->update($request->all());
-		return redirect()->back();
+		$company->update($request->all());
+		return redirect($company->show_link);
 	}
 
 	/**
@@ -99,9 +105,11 @@ class UniversitiesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($university)
+	public function destroy($company)
 	{
-		//
+		$company->delete();
+
+		return redirect("companies");
 	}
 
 }

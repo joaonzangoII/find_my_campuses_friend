@@ -170,7 +170,7 @@ class CompanyTableSeeder extends Seeder
       $r = Company::create([
         "name" => $company,
         "contact" => '0400004442',
-        "email" => 'ino@one.com',
+        "email" => 'joaonzango@gmail.com',
         "address" => 'ss',
         "website" => 'www.one.com',
         "contact_person" => ''

@@ -8,6 +8,7 @@ use App\Models\University;
 use App\Models\Student;
 use App\Models\SosModel;
 use App\Models\UserType;
+use App\Models\Company;
 class PagesController extends Controller
 {
   public function __construct()
@@ -19,7 +20,8 @@ class PagesController extends Controller
     $universities_count= University::latest()->get()->count();
     $sos_count= SosModel::latest()->get()->count();
     $students_count= Student::latest()->get()->count();
-    \View::share(compact("users_count", "universities_count","sos_count", "states","user_types","students_count"));
+    $companies_count= Company::latest()->get()->count();
+    \View::share(compact("users_count", "universities_count","sos_count", "states","user_types","students_count","companies_count"));
   }
    public function index(){
       $users= User::with("state")->latest()->get();

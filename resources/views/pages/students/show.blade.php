@@ -58,6 +58,7 @@
                 <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="{{ $user->user_type_descr }}" disabled="">
               </div>
             </div>
+            <a type="button" href="{{ URL::previous() }}" class="btn btn-warning" >Back</a>
           </fieldset>
         </form>
       </div>

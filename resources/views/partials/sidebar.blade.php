@@ -30,6 +30,13 @@
           <li><a class="submenu" href="/sos-requests/create"><i class="icon-file-alt"></i><span class="hidden-tablet"> Create</span></a></li>
         </ul>
       </li>
+      <li>
+        <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Companies</span><span class="label label-important"> {{ $companies_count}} </span></a>
+        <ul>
+          <li><a class="submenu" href="/companies"><i class="icon-file-alt"></i><span class="hidden-tablet"> View</span></a></li>
+          <li><a class="submenu" href="/companies/create"><i class="icon-file-alt"></i><span class="hidden-tablet"> Create</span></a></li>
+        </ul>
+      </li>
       {{-- <li><a href="form.html"><i class="icon-edit"></i><span class="hidden-tablet"> Forms</span></a></li>
       <li><a href="chart.html"><i class="icon-list-alt"></i><span class="hidden-tablet"> Charts</span></a></li>
       <li><a href="typography.html"><i class="icon-font"></i><span class="hidden-tablet"> Typography</span></a></li>

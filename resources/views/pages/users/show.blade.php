@@ -66,6 +66,7 @@
             </div>
 
             <a class="btn" type="button" href="{{ $user->show_link }}/profile.pdf">PDF</a>
+            <a type="button" href="{{ URL::previous() }}" class="btn btn-warning" >Back</a>
 
           </fieldset>
         </form>

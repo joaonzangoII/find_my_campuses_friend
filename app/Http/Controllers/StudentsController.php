@@ -11,6 +11,7 @@ use App\Models\State;
 use App\Models\University;
 use App\Models\SosModel;
 use App\Models\UserType;
+use App\Models\Company;
 use App\Http\Requests\StudentsRequest;
 
 class StudentsController extends Controller {
@@ -24,7 +25,8 @@ class StudentsController extends Controller {
 		$universities_count= University::latest()->get()->count();
 		$sos_count= SosModel::latest()->get()->count();
     $students_count= Student::latest()->get()->count();
-		\View::share(compact("users_count", "universities_count","sos_count", "states","user_types","students_count"));
+    $companies_count= Company::latest()->get()->count();
+		\View::share(compact("users_count", "universities_count","sos_count", "states","user_types","students_count","companies_count"));
 	}
 	public function index(){
 		$students= User::latest()->student()->get();

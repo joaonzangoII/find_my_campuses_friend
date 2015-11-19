@@ -4,6 +4,7 @@ use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use App\Models\User;
 use App\Models\University;
+use App\Models\Company;
 
 class RouteServiceProvider extends ServiceProvider {
 
@@ -49,6 +50,15 @@ class RouteServiceProvider extends ServiceProvider {
 			  $university = University::whereSlug($slug)->with("students","faculties")->firstOrFail();
 			  // User::with()->findOrFail($id);
 			  return $university;
+			} catch ( ModelNotFoundException $e ) {
+			   return abort("404");
+			}
+		});	
+		$router->bind("companies",function($slug){
+			try {
+			  $company = Company::whereSlug($slug)->firstOrFail();
+			  // User::with()->findOrFail($id);
+			  return $company;
 			} catch ( ModelNotFoundException $e ) {
 			   return abort("404");
 			}

@@ -48,6 +48,7 @@
 							  <div class="form-actions">
 								<button type="submit" class="btn btn-primary">Save changes</button>
 								<button type="reset" class="btn">Reset</button>
+                <a type="button" href="{{ URL::previous() }}" class="btn btn-warning" >Back</a>
 							  </div>
 							</fieldset>
 						  {!!Form::close()!!}

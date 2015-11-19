@@ -87,11 +87,14 @@
                 </div>
               </div>
             @endforeach
+            <a type="button" href="{{ URL::previous() }}" class="btn btn-warning" >Back</a>
           </fieldset>
         </form>
       </div>
     </div>
   </div> 
+
+
 
 {{-- 'Name:' .   {{$user->fullname}}
 {{$user}}

@@ -58,6 +58,7 @@
                   {!! Form::textarea('description', null, ['class' => 'form-control input-xlarge disabled','disabled'=>'', "placeholder" => $university->description]) !!}
                 </div>
               </div>
+              <a type="button" href="{{ URL::previous() }}" class="btn btn-warning" >Back</a>
           </fieldset>
         </form>
       </div>
